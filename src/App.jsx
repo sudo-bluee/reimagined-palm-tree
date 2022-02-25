@@ -7,7 +7,6 @@ import './style.css';
 const App = () => {
     return (
         <div >
-            <Navbar />
             <Home />
             <Footer />
         </div>
