@@ -6,6 +6,6 @@ Sudo-node is a personal website made to improve skills and gain some experience 
 
 - VSCode
 - NodeJS
-- Webpack
+- Webpack / Babel
 - React
 - Express

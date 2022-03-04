@@ -7,7 +7,6 @@ import Resume from "../components/sections/Resume";
 
 const Home = () => {
     return (
-        // This should be a container
         <>
             <Header />
             <Resume />
