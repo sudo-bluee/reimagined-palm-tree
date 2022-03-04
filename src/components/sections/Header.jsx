@@ -3,9 +3,17 @@ import styled from "styled-components";
 import Navbar from "../Navbar";
 
 
+const Container = styled.div`
+    background-color: #292929;
+    padding: 3rem 0;
+    color: white;
+`
+
 const Header = () => {
     return (
-        <h1>Header</h1>
+        <Container>
+            <Navbar />
+        </Container>
     )
 }
 
