@@ -29,12 +29,12 @@ const Item = styled.a`
         height: 0.2em;
         border-radius: 5px;
         background-color:#0085FF;
-        opacity:0;
         position: absolute;
-        content: "" ;
-        margin-top: 1em;
-        transition-duration: 200ms;
         pointer-events: none;
+        content: "" ;
+        opacity:0;
+        transform: translateY(100%) ;
+        transition-duration: 200ms;
     }
 
     :hover{
@@ -42,7 +42,7 @@ const Item = styled.a`
         color:#0085FF;
         &&::after{
             opacity:1;
-            margin-top: 0em;
+            transform: translateY(0);
         }
     }
 
