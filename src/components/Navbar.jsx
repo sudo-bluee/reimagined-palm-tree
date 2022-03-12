@@ -62,7 +62,7 @@ const Navbar = () => {
                 <Item>About</Item>
                 <Item>Protofolio</Item>
                 <Item>Blog</Item>
-                <Item>Contact Us</Item>
+                <Item>Contact</Item>
             </List>
             <Lang>
                 EN
