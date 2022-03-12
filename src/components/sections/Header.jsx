@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { CSSTransition } from "react-transition-group"; 
 import Navbar from "../Navbar";
-import { TransitionGroup } from "react-transition-group";
+import Button from "../Button";
 
 const fill = keyframes`
         0%{
@@ -31,11 +31,57 @@ const Container = styled.div`
     color: white;
 `
 
-const Welcome = styled.div`
+const Content = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
     width:80% ;
     max-width: 1100px;
     margin: 0 auto;
     padding: 3em 0 ;
+`
+
+const LeftSide = styled.div`
+    flex: 2;
+`
+
+const RightSide = styled.div`
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1em;
+`
+
+const SocialButton = styled.a`
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #FFF;
+    color: black;
+    overflow: hidden;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    opacity: 0.2;
+    transition: all 200ms ease-in;
+    &:hover{
+        width: 175px;
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    & .icon{
+        display: inline-block;
+        height: 3rem;
+        width: 3rem;
+        font-weight: 700;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    & .text{
+        margin-left: 10px;
+    }
 `
 
 const RegularText = styled.text`
@@ -59,9 +105,7 @@ const HighlightedText = styled.text`
         user-select: none;
 `
 
-const Content = styled.div`
-    width: 80%;
-`
+
 
 const UpArrow = styled.path`
     d: path('M6.67609e-06 159.999C6.67609e-06 158.72 0.488288 157.44 1.46485 156.465C3.41798 154.512 6.58204 154.512 8.53516 156.465L30 177.937L51.4688 156.465C53.4219 154.512 56.5859 154.512 58.5391 156.465C60.4922 158.418 60.4922 161.582 58.5391 163.535L33.5391 188.535C31.5859 190.488 28.4219 190.488 26.4688 188.535L1.46876 163.535C0.484381 162.559 6.67609e-06 161.279 6.67609e-06 159.999Z');
@@ -185,41 +229,57 @@ const Header = () => {
     return (
         <Container>
             <Navbar />
-            <Welcome>
-                <Content>
-                    <svg viewBox="0 0 850 380" fill="none" xmlns="http://www.w3.org/2000/svg" pointerEvents="bounding-box">
-                        <RegularText x="0" y="100">I'm</RegularText>
-                        <HighlightedText x="105" y="100">Abdelhakim</HighlightedText>
-                        <RegularText x="0" y="300">I am a</RegularText>
-                        <line x1="54" y1="23.5" x2="148" y2="23.5" stroke="#6A6A6A"/>
-                        <line x1="363.5" y1="125" x2="363.5" y2="229" stroke="#6A6A6A"/>
-                        <CSSTransition classNames="flow" timeout={1000} in={animating}>
-                            <HiText x="0" y="32">Hi</HiText>
-                        </CSSTransition>
+            <Content>
+                    <LeftSide>
+                        <svg viewBox="0 0 850 380" fill="none" xmlns="http://www.w3.org/2000/svg" pointerEvents="bounding-box">
+                            <RegularText x="0" y="100">I'm</RegularText>
+                            <HighlightedText x="105" y="100">Abdelhakim</HighlightedText>
+                            <RegularText x="0" y="300">I am a</RegularText>
+                            <line x1="54" y1="23.5" x2="148" y2="23.5" stroke="#6A6A6A"/>
+                            <line x1="363.5" y1="125" x2="363.5" y2="229" stroke="#6A6A6A"/>
+                            <CSSTransition classNames="flow" timeout={1000} in={animating}>
+                                <HiText x="0" y="32">Hi</HiText>
+                            </CSSTransition>
 
-                        <CSSTransition classNames="flow" timeout={1000} in={animating}>
-                            <HorizontalLine x1="363.5" y1="125" x2="363.5" y2="229" stroke="#6A6A6A" />
-                        </CSSTransition>
-                        <CSSTransition classNames="flow" timeout={1000} in={animating} onEntered={() => setAnimating(false)}>
-                            <VerticalLine x1="54" y1="23.5" x2="148" y2="23.5" stroke="#6A6A6A"/>
-                        </CSSTransition>
+                            <CSSTransition classNames="flow" timeout={1000} in={animating}>
+                                <HorizontalLine x1="363.5" y1="125" x2="363.5" y2="229" stroke="#6A6A6A" />
+                            </CSSTransition>
+                            <CSSTransition classNames="flow" timeout={1000} in={animating} onEntered={() => setAnimating(false)}>
+                                <VerticalLine x1="54" y1="23.5" x2="148" y2="23.5" stroke="#6A6A6A"/>
+                            </CSSTransition>
 
-                        <mask id="sliderMask" style={ { maskType : 'alpha'} } maskUnits="userSpaceOnUse" x="190" y="240" width="650" height="80">
-                            <rect x="190" y="240" width="650" height="80" fill="white"/>
-                        </mask>
-                        <rect x="190" y="240" width="650" height="80" fill="#116FC7"/>
-                        <g mask="url(#sliderMask)">
-                            <SlideContainer slide={currentSlide}>
-                                {slides.map( ( value, index ) => (<BigText x="205" y={index * 100} key={index} >{value}</BigText>) )}
-                            </SlideContainer>
-                        </g>
-                    <g transform="translate(450 185)">
-                            <UpArrow onClick={onClickSlidePrev} />
-                            <DownArrow onClick={onClickSlideNext} />
-                        </g>
-                    </svg>
-                </Content>
-            </Welcome>
+                            <mask id="sliderMask" style={ { maskType : 'alpha'} } maskUnits="userSpaceOnUse" x="190" y="240" width="650" height="80">
+                                <rect x="190" y="240" width="650" height="80" fill="white"/>
+                            </mask>
+                            <rect x="190" y="240" width="650" height="80" fill="#116FC7"/>
+                            <g mask="url(#sliderMask)">
+                                <SlideContainer slide={currentSlide}>
+                                    {slides.map( ( value, index ) => (<BigText x="205" y={index * 100} key={index} >{value}</BigText>) )}
+                                </SlideContainer>
+                            </g>
+                        <g transform="translate(450 185)">
+                                <UpArrow onClick={onClickSlidePrev} />
+                                <DownArrow onClick={onClickSlideNext} />
+                            </g>
+                        </svg>
+                        <Button>Hire Me</Button>
+                    </LeftSide>
+                    <RightSide>
+                        {/* Create seperate Social button component */}
+                        <SocialButton>
+                            <span className="icon">F</span>
+                            <span className="text">Facebook</span>
+                        </SocialButton>
+                        <SocialButton>
+                            <span className="icon">F</span>
+                            <span className="text">Facebook</span>
+                        </SocialButton>
+                        <SocialButton>
+                            <span className="icon">F</span>
+                            <span className="text">Facebook</span>
+                        </SocialButton>
+                    </RightSide>
+            </Content>
         </Container>
     )
 }
