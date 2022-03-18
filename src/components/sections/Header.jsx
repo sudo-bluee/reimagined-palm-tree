@@ -3,6 +3,9 @@ import styled, { keyframes } from "styled-components";
 import { CSSTransition } from "react-transition-group"; 
 import Navbar from "../Navbar";
 import Button from "../Button";
+// SVG Icons
+import FacebookIcon from "../../icons/facebook.svg"
+import InstagramIcon from "../../icons/instagram.svg"
 
 const fill = keyframes`
         0%{
@@ -51,38 +54,80 @@ const RightSide = styled.div`
     flex-flow: column;
     align-items: flex-end;
     justify-content: center;
-    gap: 1em;
+    gap: 2em;
+`
+
+
+const SocialRect = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-weight: 600;
+    right: 0;
+    color: ${ props => props.color };
+    background-color: white;
+    border-radius: 50px;
+    width: 4em;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 300ms ease-in-out;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+`
+
+const SocialIcon = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    fill: ${ props => props.color };
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    z-index: 1;
+    transition: 300ms ease-in-out;
+
+    & > svg{
+        height: 2.5em;
+    }
 `
 
 const SocialButton = styled.a`
-    display: inline-block;
-    border-radius: 50px;
-    background-color: #FFF;
-    color: black;
-    overflow: hidden;
-    width: 3em;
-    height: 3em;
-    line-height: 3em;
-    opacity: 0.2;
-    transition: all 200ms ease-in;
-    &:hover{
-        width: 175px;
-        cursor: pointer;
-        opacity: 1;
-    }
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 4em;
 
-    & .icon{
-        display: inline-block;
-        height: 3rem;
-        width: 3rem;
-        font-weight: 700;
-        box-sizing: border-box;
-        text-align: center;
-    }
-    & .text{
-        margin-left: 10px;
+    &:hover{
+        & ${SocialIcon} {
+            fill: white;
+            background-color: ${ props => props.color };
+        }
+
+        & ${SocialRect} {
+            width: 70%;
+            padding-right: 3em;
+            color: ${ props => props.color };
+        }
     }
 `
+
+const SocialSlide = ( props ) => {
+
+    return (
+        <SocialButton href={props.link} color={props.color}>
+            <SocialIcon color={props.color}>
+                {props.icon}
+            </SocialIcon>
+            <SocialRect color={props.color}>
+                {props.info}
+            </SocialRect>
+        </SocialButton>
+    )
+};
 
 const RegularText = styled.text`
         fill: white;
@@ -266,18 +311,9 @@ const Header = () => {
                     </LeftSide>
                     <RightSide>
                         {/* Create seperate Social button component */}
-                        <SocialButton>
-                            <span className="icon">F</span>
-                            <span className="text">Facebook</span>
-                        </SocialButton>
-                        <SocialButton>
-                            <span className="icon">F</span>
-                            <span className="text">Facebook</span>
-                        </SocialButton>
-                        <SocialButton>
-                            <span className="icon">F</span>
-                            <span className="text">Facebook</span>
-                        </SocialButton>
+                        <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
+                        <SocialSlide icon={<InstagramIcon />} link="#" info="@sudo-blue" color="#8a3ab9" />
+                        <SocialSlide link="http://facebook.com" info="Abdelhakim Merzoug" />
                     </RightSide>
             </Content>
         </Container>
