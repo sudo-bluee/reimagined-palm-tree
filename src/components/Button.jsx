@@ -9,9 +9,10 @@ const Button = styled.a`
     background-color: #116FC7;
     border-radius: 4px;
     text-transform: uppercase;
+    text-decoration: none;
     color: white;
     transition: background-color 300ms;
-    &:hover{
+    &:hover, &:focus{
         cursor: pointer;
         background-color: #0085FF;
     }

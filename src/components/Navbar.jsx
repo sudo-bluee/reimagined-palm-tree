@@ -11,7 +11,7 @@ const Container = styled.div`
     justify-content: space-between ;
 `
 
-const List = styled.div`
+const List = styled.nav`
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -23,7 +23,9 @@ const List = styled.div`
 const Item = styled.a`
     transition: color 200ms ease;
     position: relative;
-    &&::after{
+    text-decoration: none;
+    color: #FFF;
+    &::after{
         display: block;
         width: 100%;
         height: 0.2em;
@@ -37,10 +39,10 @@ const Item = styled.a`
         transition-duration: 200ms;
     }
 
-    :hover{
+    &:hover, &:focus{
         cursor: pointer;
         color:#0085FF;
-        &&::after{
+        &::after{
             opacity:1;
             transform: translateY(0);
         }
@@ -57,12 +59,12 @@ const Navbar = () => {
         <Container>
             <Logo />
             <List>
-                <Item>Home</Item>
-                <Item>Resume</Item>
-                <Item>About</Item>
-                <Item>Protofolio</Item>
-                <Item>Blog</Item>
-                <Item>Contact</Item>
+                <Item href="#">Home</Item>
+                <Item href="#">Resume</Item>
+                <Item href="#">About</Item>
+                <Item href="#">Protofolio</Item>
+                <Item href="#">Blog</Item>
+                <Item href="#">Contact</Item>
             </List>
             <Lang>
                 EN

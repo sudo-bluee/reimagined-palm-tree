@@ -6,6 +6,8 @@ import Button from "../Button";
 // SVG Icons
 import FacebookIcon from "../../icons/facebook.svg"
 import InstagramIcon from "../../icons/instagram.svg"
+import GithubIcon from "../../icons/github.svg"
+import TwitterIcon from "../../icons/twitter.svg"
 
 const fill = keyframes`
         0%{
@@ -70,8 +72,13 @@ const SocialRect = styled.div`
     border-radius: 50px;
     width: 4em;
     height: 100%;
-    white-space: nowrap;
+    text-align: center;
     overflow: hidden;
+    white-space: nowrap;
+    /* 
+        Small screen sizes :
+        white-space: normal;
+    */
     transition: 300ms ease-in-out;
     box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
 `
@@ -100,8 +107,9 @@ const SocialButton = styled.a`
     position: relative;
     width: 100%;
     height: 4em;
+    font-size: 1rem;
 
-    &:hover{
+    &:hover, &:focus{
         & ${SocialIcon} {
             fill: white;
             background-color: ${ props => props.color };
@@ -109,7 +117,7 @@ const SocialButton = styled.a`
 
         & ${SocialRect} {
             width: 70%;
-            padding-right: 3em;
+            padding-right: 4em;
             color: ${ props => props.color };
         }
     }
@@ -118,7 +126,7 @@ const SocialButton = styled.a`
 const SocialSlide = ( props ) => {
 
     return (
-        <SocialButton href={props.link} color={props.color}>
+        <SocialButton href={props.link} target="_blank" rel="noreferrer noopener" color={props.color}>
             <SocialIcon color={props.color}>
                 {props.icon}
             </SocialIcon>
@@ -307,13 +315,14 @@ const Header = () => {
                                 <DownArrow onClick={onClickSlideNext} />
                             </g>
                         </svg>
-                        <Button>Hire Me</Button>
+                        <Button href="#">Hire Me</Button>
                     </LeftSide>
                     <RightSide>
                         {/* Create seperate Social button component */}
                         <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
                         <SocialSlide icon={<InstagramIcon />} link="#" info="@sudo-blue" color="#8a3ab9" />
-                        <SocialSlide link="http://facebook.com" info="Abdelhakim Merzoug" />
+                        <SocialSlide icon={<GithubIcon />} link="http://github.com/sudo-node" info="sudo-node" color="#000" />
+                        <SocialSlide icon={<TwitterIcon />} link="http://twitter.com/sudo-node" info="sudo-blue" color="#00acee" />
                     </RightSide>
             </Content>
         </Container>
