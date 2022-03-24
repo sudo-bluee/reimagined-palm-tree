@@ -318,11 +318,10 @@ const Header = () => {
                         <Button href="#">Hire Me</Button>
                     </LeftSide>
                     <RightSide>
-                        {/* Create seperate Social button component */}
                         <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
                         <SocialSlide icon={<InstagramIcon />} link="#" info="@sudo-blue" color="#8a3ab9" />
                         <SocialSlide icon={<GithubIcon />} link="http://github.com/sudo-node" info="sudo-node" color="#000" />
-                        <SocialSlide icon={<TwitterIcon />} link="http://twitter.com/sudo-node" info="sudo-blue" color="#00acee" />
+                        <SocialSlide icon={<TwitterIcon />} link="http://twitter.com/sudo_blue" info="@sudo_blue" color="#00acee" />
                     </RightSide>
             </Content>
         </Container>
