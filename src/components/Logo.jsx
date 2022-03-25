@@ -5,6 +5,7 @@ const Text = styled.h1`
     font-family: "CaskaydiaCove NF";
     font-weight: 200;
     font-size: clamp(2rem, 3vw, 3rem);
+    cursor: pointer;
 `
 
 const Logo = () => {

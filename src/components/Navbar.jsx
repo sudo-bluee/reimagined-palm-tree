@@ -25,9 +25,9 @@ const List = styled.nav`
         background-color: #292929;
         font-size: clamp(1.2rem, 3vw, 2rem);
         box-shadow: -2px 0px 25px 5px #303030;;
-        transition: transform 300ms ease-in-out, visibility 300ms 0ms linear; 
-        visibility: ${ props => props.toggled ? 'visible' : 'hidden' };
-        transform: ${ props => props.toggled ? 'translateX(0%)' : 'translateX(100%)' };
+        transition: transform 300ms ease-in-out; 
+        visibility: ${ props => props.isVisible ? 'visible' : 'hidden' };
+        transform: ${ props => props.isOpen ? 'translateX(0%)' : 'translateX(100%)' };
         width: 80%;
         height: 100%;
         right: 0;
@@ -93,10 +93,18 @@ const ToggleLine = styled.div`
 
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
+    const [isAnimating, setAnimating] = useState(false);
+
+    function toggleNavbar()
+    {
+        setOpen( !isOpen )
+        setAnimating( true );
+    }
+
     return (
         <Container>
             <Logo />
-            <List toggled={ isOpen }>
+            <List isOpen={ isOpen } isVisible={ isOpen || isAnimating } onTransitionEnd={ () => setAnimating( false ) } >
                 <Item href="#">Home</Item>
                 <Item href="#">Resume</Item>
                 <Item href="#">About</Item>
@@ -104,7 +112,8 @@ const Navbar = () => {
                 <Item href="#">Blog</Item>
                 <Item href="#">Contact</Item>
             </List>
-            <ToggleButton onClick={() => setOpen(!isOpen)} toggled={ isOpen }>
+
+            <ToggleButton onClick={toggleNavbar} toggled={ isOpen }>
                 <ToggleLine />
                 <ToggleLine />
                 <ToggleLine />

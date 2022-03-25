@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { CSSTransition } from "react-transition-group"; 
 import Navbar from "../Navbar";
 import Button from "../Button";
+import device from "../../utils/deviceSize";
 // SVG Icons
 import FacebookIcon from "../../icons/facebook.svg"
 import InstagramIcon from "../../icons/instagram.svg"
@@ -43,7 +44,11 @@ const Content = styled.div`
     width:80% ;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3em 0 ;
+    padding: 3em 0;
+    @media ${device.mobile} {
+        flex-flow: column;
+        gap: 2em;
+    }
 `
 
 const LeftSide = styled.div`
@@ -57,6 +62,9 @@ const RightSide = styled.div`
     align-items: flex-end;
     justify-content: center;
     gap: 2em;
+    @media ${device.mobile} {
+        flex-flow: row wrap;
+    }
 `
 
 
@@ -74,13 +82,9 @@ const SocialRect = styled.div`
     height: 100%;
     text-align: center;
     overflow: hidden;
-    white-space: nowrap;
-    /* 
-        Small screen sizes :
-        white-space: normal;
-    */
-    transition: 300ms ease-in-out;
     box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: 300ms ease-in-out;
+    
 `
 
 const SocialIcon = styled.div`
@@ -119,6 +123,15 @@ const SocialButton = styled.a`
             width: 70%;
             padding-right: 4em;
             color: ${ props => props.color };
+            transition: 300ms ease-in-out;
+        }
+    }
+
+    @media ${device.mobile} {
+        width: 4em;
+        font-size: clamp(0.7rem, 3vw, 1rem);
+        & ${SocialRect} {
+            display: none;
         }
     }
 `
@@ -145,7 +158,7 @@ const RegularText = styled.text`
 `
 
 const BigText = styled.text`
-        fill: white;
+        fill: #292929;
         font-size:64px;
         font-weight: 700;
         user-select: none;
@@ -304,10 +317,10 @@ const Header = () => {
                             <mask id="sliderMask" style={ { maskType : 'alpha'} } maskUnits="userSpaceOnUse" x="190" y="240" width="650" height="80">
                                 <rect x="190" y="240" width="650" height="80" fill="white"/>
                             </mask>
-                            <rect x="190" y="240" width="650" height="80" fill="#116FC7"/>
+                            <rect x="190" y="240" width="650" height="80" fill="#FFF"/>
                             <g mask="url(#sliderMask)">
                                 <SlideContainer slide={currentSlide}>
-                                    {slides.map( ( value, index ) => (<BigText x="205" y={index * 100} key={index} >{value}</BigText>) )}
+                                    {slides.map( ( value, index ) => (<BigText  x="205" y={index * 100} key={index} >{value}</BigText>) )}
                                 </SlideContainer>
                             </g>
                         <g transform="translate(450 185)">
