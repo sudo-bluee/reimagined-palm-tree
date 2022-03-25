@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Text = styled.h1`
     font-family: "CaskaydiaCove NF";
     font-weight: 200;
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: clamp(1.5rem, 3vw, 3rem);
     cursor: pointer;
 `
 

@@ -31,28 +31,37 @@ const wiggle = keyframes`
         }
 `
 
-const Container = styled.div`
+const Container = styled.section`
     background-color: #292929;
-    padding: 3em 0;
+    padding: 5em 0;
     color: white;
 `
 
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
-    gap: 1em;
+    gap: 2em;
     width:80% ;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 3em 0;
+    padding: 5em 0;
     @media ${device.mobile} {
         flex-flow: column;
-        gap: 2em;
     }
 `
 
 const LeftSide = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
     flex: 2;
+    gap: 5em;
+    
+    @media ${device.mobile} {
+        align-items: center;
+        gap: 2em;
+    }
 `
 
 const RightSide = styled.div`
@@ -293,8 +302,7 @@ const Header = () => {
     }
 
     return (
-        <Container>
-            <Navbar />
+        <Container id="home">
             <Content>
                     <LeftSide>
                         <svg viewBox="0 0 850 380" fill="none" xmlns="http://www.w3.org/2000/svg" pointerEvents="bounding-box">

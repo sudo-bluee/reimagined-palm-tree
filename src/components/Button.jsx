@@ -5,6 +5,7 @@ const Button = styled.a`
     display: inline-block;
     font-size: clamp(0.8rem, 3vw, 2rem);
     padding: 0.5em 1.5em;
+    text-align: center;
     margin: 1em;
     background-color: #116FC7;
     border: 2px solid #116FC7;

@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components"
 import Logo from "./Logo";
 import device from "../utils/deviceSize";
 
-const Container = styled.div`
+const Container = styled.nav`
+    position: fixed;
     display: flex;
-    width: 90%;
-    margin: 0 auto ;
-    padding: 1em 0;
+    color: white;
+    width: 100%;
+    transition: 200ms ease-in-out;
+    padding: ${ props => props.hasScrolled ? '1em 4em' : '3em 4em'};
+    color: ${ props => props.hasScrolled ? '#292929' : '#FFF'};
+    background-color: ${ props => props.hasScrolled ? '#C4C4C4' : '#292929'};    
     align-items: center;
     justify-content: space-between;
+    z-index: 50;
 `
 
-const List = styled.nav`
+const List = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,14 +27,14 @@ const List = styled.nav`
     @media ${device.mobile} {
         flex-flow: column;
         position: fixed;
-        background-color: #292929;
+        background-color: inherit;
         font-size: clamp(1.2rem, 3vw, 2rem);
-        box-shadow: -2px 0px 25px 5px #303030;;
+        box-shadow: -1px 0px 15px 2px #303030;;
         transition: transform 300ms ease-in-out; 
         visibility: ${ props => props.isVisible ? 'visible' : 'hidden' };
         transform: ${ props => props.isOpen ? 'translateX(0%)' : 'translateX(100%)' };
-        width: 80%;
         height: 100%;
+        width: 80%;
         right: 0;
         top: 0;
         z-index: 10;
@@ -39,8 +44,9 @@ const List = styled.nav`
 const Item = styled.a`
     transition: color 200ms ease;
     position: relative;
+    color: inherit;
     text-decoration: none;
-    color: #FFF;
+    font-weight: 300;
     &::after{
         display: block;
         width: 100%;
@@ -64,12 +70,23 @@ const Item = styled.a`
         }
     }
 `
+
+const ToggleLine = styled.div`
+    width: 100%;
+    height: 4px;
+    border-radius: 15px;
+    background-color: #FFF;
+    transition: 300ms ease-in-out;
+`
+
 const ToggleButton = styled.div`
     display: none;
     flex-flow: column;
+    position: absolute;
+    right: 150px;
     width: 2em;
     gap: .4em;
-    z-index: 11;
+    z-index: 99;
     @media ${device.mobile} {
         display : flex
     }
@@ -77,23 +94,31 @@ const ToggleButton = styled.div`
         opacity: 0.8;
     }
 
+    & ${ToggleLine}{
+        ${ props => props.hasScrolled && 'background-color: #292929;' } 
+    }
+
     & ${ToggleLine}:nth-child(2){
-        transition: 300ms ease-in-out;
         transform-origin: 100% 0;
         transform : ${ props => props.toggled ? 'scaleX(70%)' : 'scaleX(100%)' };
     }
+
+
+
 `
-const ToggleLine = styled.div`
-    width: 100%;
-    height: 4px;
-    border-radius: 15px;
-    background-color: #FFF;
-`
+
 
 
 const Navbar = () => {
     const [isOpen, setOpen] = useState(false);
     const [isAnimating, setAnimating] = useState(false);
+    const [hasScrolled, setScrolled] = useState(false);
+
+    function handleScroll()
+    {
+        setScrolled( window.scrollY > 0 );
+        
+    }
 
     function toggleNavbar()
     {
@@ -101,19 +126,24 @@ const Navbar = () => {
         setAnimating( true );
     }
 
+    useEffect( () => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    });
+
     return (
-        <Container>
+        <Container hasScrolled={hasScrolled}>
             <Logo />
             <List isOpen={ isOpen } isVisible={ isOpen || isAnimating } onTransitionEnd={ () => setAnimating( false ) } >
-                <Item href="#">Home</Item>
-                <Item href="#">Resume</Item>
-                <Item href="#">About</Item>
-                <Item href="#">Protofolio</Item>
-                <Item href="#">Blog</Item>
-                <Item href="#">Contact</Item>
+                <Item href="#home">Home</Item>
+                <Item href="#about">About</Item>
+                <Item href="#resume">Resume</Item>
+                <Item href="#protofolio">Protofolio</Item>
+                <Item href="#blog">Blog</Item>
+                <Item href="#contact">Contact</Item>
             </List>
 
-            <ToggleButton onClick={toggleNavbar} toggled={ isOpen }>
+            <ToggleButton hasScrolled={hasScrolled} onClick={toggleNavbar} toggled={ isOpen }>
                 <ToggleLine />
                 <ToggleLine />
                 <ToggleLine />
