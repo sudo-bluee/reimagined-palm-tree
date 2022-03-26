@@ -3,9 +3,11 @@
 :root {
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
 }
 
 *, body {
     margin : 0;
     padding: 0;
+    box-sizing: border-box;
 }

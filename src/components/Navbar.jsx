@@ -9,7 +9,7 @@ const Container = styled.nav`
     color: white;
     width: 100%;
     transition: 200ms ease-in-out;
-    padding: ${ props => props.hasScrolled ? '1em 4em' : '3em 4em'};
+    padding: ${ props => props.hasScrolled ? '1em 2em' : '3em 4em'};
     color: ${ props => props.hasScrolled ? '#292929' : '#FFF'};
     background-color: ${ props => props.hasScrolled ? '#C4C4C4' : '#292929'};    
     align-items: center;
@@ -29,9 +29,9 @@ const List = styled.ul`
         position: fixed;
         background-color: inherit;
         font-size: clamp(1.2rem, 3vw, 2rem);
-        box-shadow: -1px 0px 15px 2px #303030;;
-        transition: transform 300ms ease-in-out; 
+        transition: transform 600ms ease-in-out, box-shadow 600ms ease-in-out; 
         visibility: ${ props => props.isVisible ? 'visible' : 'hidden' };
+        box-shadow: ${ props => props.isOpen ? '-1px 0px 10px 2px rgba(0,0,0, 0.30)' : '0px 0px 0px 0px rgba(0,0,0, 0)' };
         transform: ${ props => props.isOpen ? 'translateX(0%)' : 'translateX(100%)' };
         height: 100%;
         width: 80%;
@@ -83,7 +83,8 @@ const ToggleButton = styled.div`
     display: none;
     flex-flow: column;
     position: absolute;
-    right: 150px;
+    right: 100px;
+    transition: right 300ms ease-in-out;
     width: 2em;
     gap: .4em;
     z-index: 99;

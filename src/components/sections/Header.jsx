@@ -31,7 +31,7 @@ const wiggle = keyframes`
         }
 `
 
-const Container = styled.section`
+const Container = styled.header`
     background-color: #292929;
     padding: 5em 0;
     color: white;
@@ -336,7 +336,7 @@ const Header = () => {
                                 <DownArrow onClick={onClickSlideNext} />
                             </g>
                         </svg>
-                        <Button href="#">Hire Me</Button>
+                        <Button href="#resume">Hire Me</Button>
                     </LeftSide>
                     <RightSide>
                         <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
