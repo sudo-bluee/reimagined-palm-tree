@@ -83,7 +83,7 @@ const ToggleButton = styled.div`
     display: none;
     flex-flow: column;
     position: absolute;
-    right: 100px;
+    right: 2em;
     transition: right 300ms ease-in-out;
     width: 2em;
     gap: .4em;

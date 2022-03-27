@@ -32,11 +32,11 @@ const Title = styled.h1`
 `
 
 const Desc = styled.h3`
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.3rem;
+    font-weight: 300;
     text-align: center;
     align-self: center;
-    width: 70%;
+    width: 60ch;
     color: #494949;
     transition: var(--description-duration) ease-in-out var(--title-duration);
     transform: ${props => props.isVisible || 'translateY(50%)'};

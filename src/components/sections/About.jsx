@@ -70,7 +70,7 @@ const SkillContainer = styled.div`
     justify-content: space-between;
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(30%)' };
-    transition: var(--skill-duration) ease-in-out var(--title-duration);
+    transition: ${props => props.isVisible ? 'var(--skill-duration) ease-in-out var(--title-duration)' : 'none' } ;
 `
 
 const SkillIcon = styled(TagsIcon)`
@@ -99,7 +99,7 @@ const LanguageSkill = styled.div`
     gap: 0.5em;
     align-items: center;
     justify-content: space-between;
-    transition: var(--language-duration) ease-in-out calc(var(--title-duration));
+    transition: ${props => props.isVisible ? 'var(--language-duration) ease-in-out calc(var(--title-duration))' : 'none' };
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(-30%)' };
 `
@@ -122,14 +122,14 @@ const ProgressBar = styled.div`
         height: 100%;
         border-radius: inherit;
         background-color: #292929;
-        transition: var(--progress-duration) ease-in-out calc(var(--title-duration) + var(--language-duration));
-        width: ${props => props.progress * 100}%;
+        transition: ${props => props.isVisible ? 'var(--progress-duration) ease-in-out calc(var(--title-duration) + var(--language-duration))' : 'none' };
+        width: ${props => ( props.isVisible ? props.progress : 0 ) * 100}%;
     }
 `
 const Language = ( props ) => (
             <LanguageSkill sortIndex={props.delayIndex} isVisible={props.animateIn}>
                 <LanguageName>{props.name} :</LanguageName>
-                <ProgressBar progress={ props.animateIn ? props.progress : 0} />
+                <ProgressBar isVisible={props.animateIn} progress={ props.progress } />
             </LanguageSkill>
 )
 
