@@ -1,6 +1,7 @@
-import React, { forwardRef, useRef, useEffect} from "react";
+import React, { useRef, useEffect} from "react";
 import styled from "styled-components";
 import useIntersectionObserver from "../utils/IntersectionObserver";
+import device from "../utils/deviceSize";
 
 const Wrapper = styled.section`
     background-color : #C4C4C4;
@@ -41,6 +42,9 @@ const Desc = styled.h3`
     transition: var(--description-duration) ease-in-out var(--title-duration);
     transform: ${props => props.isVisible || 'translateY(50%)'};
     opacity: ${props => props.isVisible ? 1 : 0};
+    @media ${device.mobile}{
+        width: 90%;
+    }
 `
 
 const Section =  (props) => {

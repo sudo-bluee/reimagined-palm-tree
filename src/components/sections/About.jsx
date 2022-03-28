@@ -66,11 +66,14 @@ const SkillContainer = styled.div`
     flex-flow: row nowrap;
     font-size: 1.3rem;
     gap: 1em;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(30%)' };
     transition: ${props => props.isVisible ? 'var(--skill-duration) ease-in-out var(--title-duration)' : 'none' } ;
+    @media ${device.mobile}{
+        font-size: 1rem;
+    }
 `
 
 const SkillIcon = styled(TagsIcon)`
@@ -81,6 +84,7 @@ const SkillText = styled.p`
     display: inline-block;
     font-weight: 600;
     flex: 3;
+
 `
 
 const Skill = ( props ) => (
@@ -102,6 +106,9 @@ const LanguageSkill = styled.div`
     transition: ${props => props.isVisible ? 'var(--language-duration) ease-in-out calc(var(--title-duration))' : 'none' };
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(-30%)' };
+    @media ${device.mobile}{
+        font-size: 1.3rem;
+    }
 `
 const LanguageName = styled.p`
     display: inline-block;
@@ -176,7 +183,7 @@ const About = () => {
                 <Column>
                     <Title animateIn={isVisible}>Skills:</Title>
                     <ColumnContent>
-                    { skills.map( ( value, index ) => <Skill key={index} text={value} animateIn={isVisible} delayIndex={index} /> ) }
+                        { skills.map( ( value, index ) => <Skill key={index} text={value} animateIn={isVisible} delayIndex={index} /> ) }
                     </ColumnContent>
                 </Column>
             </Wrapper>

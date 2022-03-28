@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Button = styled.a`
     display: inline-block;
-    font-size: clamp(0.8rem, 3vw, 2rem);
+    font-size: clamp(1rem, 3vw, 1.5rem);
     padding: 0.5em 1.5em;
     text-align: center;
     margin: 1em;
