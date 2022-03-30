@@ -9,7 +9,9 @@ const Container = styled.nav`
     color: white;
     width: 100%;
     transition: 200ms ease-in-out;
-    padding: ${ props => props.hasScrolled ? '1em 2em' : '3em 4em'};
+    transition-property: padding, color, background-color;
+    font-size: clamp(1.1rem, 2vw, 2.2rem);
+    padding: ${ props => props.hasScrolled ? '0.5em 2em' : '1em 3em'};
     color: ${ props => props.hasScrolled ? '#292929' : '#FFF'};
     background-color: ${ props => props.hasScrolled ? '#C4C4C4' : '#292929'};    
     align-items: center;
@@ -23,7 +25,6 @@ const List = styled.ul`
     justify-content: center;
     flex: 2;
     gap: 1.5em;
-    font-size: clamp(1.1rem, 2vw, 2.2rem);
     @media ${device.mobile} {
         flex-flow: column;
         position: fixed;

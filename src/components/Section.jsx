@@ -1,4 +1,4 @@
-import React, { useRef, useEffect} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 import useIntersectionObserver from "../utils/IntersectionObserver";
 import device from "../utils/deviceSize";
@@ -27,9 +27,15 @@ const Title = styled.h1`
     font-size: 3rem;
     font-weight: 600;
     text-align: center;
+    align-self: center;
     transition: var(--title-duration) ease-in-out;
     transform: ${props => props.isVisible || 'translateY(-50%)'};
     opacity: ${props => props.isVisible ? 1 : 0};
+    transition-property: opacity, transform;
+    @media ${device.mobile}{
+        width: 90%;
+        font-size: 2rem;
+    }
 `
 
 const Desc = styled.h3`
@@ -42,14 +48,16 @@ const Desc = styled.h3`
     transition: var(--description-duration) ease-in-out var(--title-duration);
     transform: ${props => props.isVisible || 'translateY(50%)'};
     opacity: ${props => props.isVisible ? 1 : 0};
+    transition-property: opacity, transform;
     @media ${device.mobile}{
         width: 90%;
+        font-size: 1rem;
     }
 `
 
 const Section =  (props) => {
     const wrapperRef = useRef();
-    const entry = useIntersectionObserver(wrapperRef, { rootMargin: '-30%' });
+    const entry = useIntersectionObserver(wrapperRef, { rootMargin: '-30%' }, true);
     const isVisible = entry?.isIntersecting;
     useEffect( () => {
         props.onVisiblityChange?.(isVisible);

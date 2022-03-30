@@ -1,14 +1,22 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
-function useIntersectionObserver( ref, options )
+function useIntersectionObserver( ref, options, onceOnly )
 {
-    const [ entry, setEntry ] = useState(null);
-
+    const [ entry, setEntry ] = useState();
     useEffect( () => {
         const element = ref?.current;
-        var observer = new IntersectionObserver( ([entry]) => setEntry( entry ), options);
+        let observer = new IntersectionObserver( ([e]) => 
+        {
+            setEntry( e )
+            if(e.isIntersecting && onceOnly)
+            {
+                observer.unobserve( element );
+            } 
+        }, options);
+
         observer.observe( element );
-        return observer.disconnect;
+        
+        return () => observer.disconnect();
     }, [ref] );
 
     return entry;

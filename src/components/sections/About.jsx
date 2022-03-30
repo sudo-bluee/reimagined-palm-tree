@@ -39,6 +39,7 @@ const Title = styled.h3`
     opacity: ${props => props.animateIn ? 1 : 0};
     transform: ${props => props.animateIn ? 'scale(1)' : 'scale(1.5)' };
     transition: var(--title-duration) ease-in-out var(--title-duration);
+    transition-property: opacity, transform;
 `
 
 const RowDevider = styled.div`
@@ -71,13 +72,14 @@ const SkillContainer = styled.div`
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(30%)' };
     transition: ${props => props.isVisible ? 'var(--skill-duration) ease-in-out var(--title-duration)' : 'none' } ;
+    transition-property: opacity, transform;
     @media ${device.mobile}{
         font-size: 1rem;
     }
 `
 
 const SkillIcon = styled(TagsIcon)`
-    height: 2rem;
+    height: 1.5em;
 `
 
 const SkillText = styled.p`
@@ -106,6 +108,7 @@ const LanguageSkill = styled.div`
     transition: ${props => props.isVisible ? 'var(--language-duration) ease-in-out calc(var(--title-duration))' : 'none' };
     opacity: ${props => props.isVisible ? 1 : 0};
     transform: ${props => props.isVisible ? 'translateX(0%)' : 'translateX(-30%)' };
+    transition-property: opacity, transform;
     @media ${device.mobile}{
         font-size: 1.3rem;
     }
@@ -131,6 +134,7 @@ const ProgressBar = styled.div`
         background-color: #292929;
         transition: ${props => props.isVisible ? 'var(--progress-duration) ease-in-out calc(var(--title-duration) + var(--language-duration))' : 'none' };
         width: ${props => ( props.isVisible ? props.progress : 0 ) * 100}%;
+        transition-property: opacity, width;
     }
 `
 const Language = ( props ) => (

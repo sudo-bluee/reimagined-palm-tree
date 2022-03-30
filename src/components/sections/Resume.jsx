@@ -13,7 +13,6 @@ const Wrapper = styled.div`
     gap: 5em;
     @media ${device.laptop}{
         flex-flow: column;
-        gap: 2em;
         margin-block: 2em;
     }
 `
@@ -33,8 +32,13 @@ const ResumeText = styled.p`
     font-weight: 400;
     font-size: 1.5rem;
     transition: 500ms ease-in-out;
+    transition-property: opacity, transform;
     opacity: ${props => props.animateIn ? '1' : '0'};
     transform: ${props => props.animateIn ? 'translateX(0)' : 'translateX(-50%)'};
+    @media ${device.mobile}{
+        text-align: center;
+        font-size: 1.1rem;
+    }
 `
 
 const Resume = () => {

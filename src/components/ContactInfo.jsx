@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import device from "../utils/deviceSize";
 // Icons
 import AtIcon from "../icons/at.svg"
 import PhoneIcon from "../icons/phone.svg"
@@ -11,8 +12,13 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
     gap: 1.5em;
     transition: 500ms ease-in-out;
+    transition-property: opacity, transform;
     opacity: ${props => props.animateIn ? '1' : '0'};
     transform: ${props => props.animateIn ? 'translateX(0)' : 'translateX(50%)'};
+    @media ${device.mobile}{
+        font-size: 1rem;
+        word-break: break-all;
+    }
 
 `
 
@@ -24,10 +30,12 @@ const Item = styled.div`
 const ItemText = styled.p`
     display: inline-block;
     font-weight: 300;
+
 `
 
 const ItemIcon = styled.div`
     width: 1em;
+    height: 1em;
     display: flex;
     justify-content: center;
 

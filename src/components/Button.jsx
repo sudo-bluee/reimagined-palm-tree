@@ -13,6 +13,8 @@ const Button = styled.a`
     text-decoration: none;
     color: white;
     transition: ease-in-out 300ms;
+    transition-property: color, background-color, transform;
+
     &:hover, &:focus{
         cursor: pointer;
         background-color: transparent;
