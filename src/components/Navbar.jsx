@@ -140,7 +140,7 @@ const Navbar = () => {
                 <Item href="#home">Home</Item>
                 <Item href="#about">About</Item>
                 <Item href="#resume">Resume</Item>
-                <Item href="#protofolio">Protofolio</Item>
+                <Item href="#portfolio">Portfolio</Item>
                 <Item href="#blog">Blog</Item>
                 <Item href="#contact">Contact</Item>
             </List>
