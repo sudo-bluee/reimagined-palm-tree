@@ -3,6 +3,7 @@ import Section from "../Section";
 import styled from "styled-components";
 // Icons
 import leftArrow from "../../icons/arrow-left.svg";
+import device from "../../utils/deviceSize";
 
 const Wrapper = styled.div`
     display: flex;
@@ -43,11 +44,16 @@ const Carousel = styled.div`
     order: 1;
     overflow-x: hidden;
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.5em;
+    font-size: 1rem;
+    @media ${device.mobile}
+    {
+        font-size: clamp(0.4rem, 2vw, 1rem);
+    }
 `
 const CarouselWrapper = styled.div`
-    --item-width : 15rem;
-    --item-gap : 1rem;
+    --item-width : 20em;
+    --item-gap : 1em;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -55,61 +61,107 @@ const CarouselWrapper = styled.div`
     gap: var(--item-gap);
     transition: 400ms ease-in-out transform;
     transform: translateX( calc( ( var(--item-gap) + var(--item-width) ) * ${props => -props.scrollIndex || 0 } ) );
+
 `
 
 const ItemContent = styled.div`
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+    flex-flow: column nowrap;
     position: absolute;
+    padding: 1em;
     bottom: 0;
-    max-height: max-content;
+    height: 60%;
     width: 100%;
     transition: 300ms ease-in-out;
+    transition-property: opacity, transform;
     background: linear-gradient(to top, rgba(0 0 0 / 0.8), rgba(0 0 0 / 0));
-    backdrop-filter: blur(1px);
+    transform: translateY(60%);
+`
+
+const ItemTitle = styled.h1`
+    color: #FFF;
+    font-weight: 600;
+`
+
+const ItemDetails = styled.p`
+    color: #FFF;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: 300ms ease-in-out;
+    transition-property: opacity, transform;
+    transition-delay: 0ms;
+    text-align: center;
+`
+const ItemClickInfo = styled.p`
+    color: dodgerblue;
+    font-weight: 500;
+    position: absolute;
+    bottom: 1em;
+    opacity: 0;
+    transform: scale(1.4);
+    transition: 300ms ease-in-out;
+    transition-property: opacity, transform;
 `
 
 const ItemContainer = styled.div`
     background-color: #FFF;
     border-radius: 1rem;
-    height: 300px;
+    height: 25em;
     min-width: var(--item-width);
     background-image: url(https://picsum.photos/300/300);
     background-size: cover;
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    &:hover{
+
+    &::after{
+        content : '';
+        position: absolute;
+        inset: 0.5em;
+        border-radius: 1rem;
+        border: 1px black solid;
+        z-index: -1;
+        backdrop-filter: blur(0px);
+        transition: 400ms ease-in-out;
+    }
+
+    &:hover, &:focus{
         cursor: pointer;
         & ${ItemContent}
         {
-            max-height: 50%;
+            transform: translateY(0);
+        }
+
+        & ${ItemDetails}
+        {
+            opacity: 1;
+            transition-delay: 400ms;
+            transform: translateY(0);
+        }
+        & ${ItemClickInfo}
+        {
+            transform: scale(1);
+            opacity: 1;
+            transition-delay: 600ms;
+        }
+        &::after{
             backdrop-filter: blur(5px);
         }
     }
-
-    &::after{
-        transition: 300ms ease-in-out;
-        transform-origin: 0% 100%;
-        content: '';
-        inset: 0;
-        z-index: -1;
-        position: absolute;
-
-    }
-`
-const ItemTitle = styled.h1`
-    color: #FFF;
-    font-weight: 600;
 `
 
 
 
-const Item = () => (
+const Item = ({ title, description }) => (
     <ItemContainer>
         <ItemContent>
-            <ItemTitle>
-                Project 1
-            </ItemTitle>
+            <ItemTitle>{ title }</ItemTitle>
+            <ItemDetails>{ description }</ItemDetails>
+            <ItemClickInfo>Click to view details</ItemClickInfo>
         </ItemContent>
     </ItemContainer>
 );
@@ -118,16 +170,32 @@ const Portfolio = () => {
     const [ scrollIndex, setScrollIndex ] = useState(0);
     const items = [
         { 
-            title : 'Project 1',
-            description : 'Lorem Ipsum adzd'
+            title : 'Portfolio',
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
         },
         { 
             title : 'Project 2',
-            description : 'Lorem Ipsum adzd'
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
         },
         { 
             title : 'Project 3',
-            description : 'Lorem Ipsum adzd'
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
+        },
+        { 
+            title : 'Project 3',
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
+        },
+        { 
+            title : 'Project 3',
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
+        },
+        { 
+            title : 'Project 3',
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
+        },
+        { 
+            title : 'Project 3',
+            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
         },
     ]
 
@@ -147,7 +215,7 @@ const Portfolio = () => {
                 <LeftArrow onClick={scrollBackward} />
                 <Carousel>
                     <CarouselWrapper scrollIndex={scrollIndex}>
-                        { items.map( ( value, index ) => <Item sum={index + 1} key={index} /> ) }
+                        { items.map( ( value, index ) => <Item key={index} title={value.title} description={value.description} /> ) }
                     </CarouselWrapper>
                 </Carousel>
                 <RightArrow onClick={scrollForward} />
