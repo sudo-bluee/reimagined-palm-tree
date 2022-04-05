@@ -1,9 +1,26 @@
 import React, {useState} from "react";
 import Section from "../Section";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 // Icons
 import leftArrow from "../../icons/arrow-left.svg";
 import device from "../../utils/deviceSize";
+
+const fadeIn = keyframes`
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+`
+const scaleUp = keyframes`
+    0%{
+        transform: scale(0.8) scaleY(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+`
 
 const Wrapper = styled.div`
     display: flex;
@@ -154,8 +171,6 @@ const ItemContainer = styled.div`
     }
 `
 
-
-
 const Item = ({ title, description }) => (
     <ItemContainer>
         <ItemContent>
@@ -166,8 +181,31 @@ const Item = ({ title, description }) => (
     </ItemContainer>
 );
 
+const ModalContainer = styled.div`
+    display: ${props => props.isOpen ? 'flex' : 'none'};
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: ${fadeIn} 300ms ease-in-out forwards;
+`
+const Modal = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 1rem;
+    background-color: #FFF;
+    animation: 500ms ease-in-out forwards;
+    animation-name: ${fadeIn}, ${scaleUp};
+`
+
+
 const Portfolio = () => {
     const [ scrollIndex, setScrollIndex ] = useState(0);
+    const [ modal, setModal ] = useState(false);
     const items = [
         { 
             title : 'Portfolio',
@@ -211,6 +249,9 @@ const Portfolio = () => {
 
     return (
         <Section id="portfolio" title="Portfolio" description="A list of my previous built projects">
+            <ModalContainer isOpen={modal}>
+                <Modal />
+            </ModalContainer>
             <Wrapper>
                 <LeftArrow onClick={scrollBackward} />
                 <Carousel>

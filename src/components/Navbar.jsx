@@ -16,7 +16,7 @@ const Container = styled.nav`
     background-color: ${ props => props.hasScrolled ? '#C4C4C4' : '#292929'};    
     align-items: center;
     justify-content: space-between;
-    z-index: 50;
+    z-index: 10;
 `
 
 const List = styled.ul`
@@ -129,9 +129,10 @@ const Navbar = () => {
     }
 
     useEffect( () => {
+        setScrolled( window.scrollY > 0 );
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    });
+    }, []);
 
     return (
         <Container hasScrolled={hasScrolled}>
