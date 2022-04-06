@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Section from "../Section";
 import styled, { keyframes } from "styled-components";
 // Icons
-import leftArrow from "../../icons/arrow-left.svg";
+import leftArrowIcon from "../../icons/arrow-left.svg";
+import closeIcon from "../../icons/close.svg";
 import device from "../../utils/deviceSize";
 
 const fadeIn = keyframes`
@@ -15,7 +16,7 @@ const fadeIn = keyframes`
 `
 const scaleUp = keyframes`
     0%{
-        transform: scale(0.8) scaleY(0.5);
+        transform: scale(1.2);
     }
     100%{
         transform: scale(1);
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
     gap: 2rem;
 `
 
-const LeftArrow = styled(leftArrow)`
+const LeftArrow = styled(leftArrowIcon)`
     order: 0;
     height: 3rem;
     fill : #707070;
@@ -43,7 +44,7 @@ const LeftArrow = styled(leftArrow)`
     }
 `
 
-const RightArrow = styled(leftArrow)`
+const RightArrow = styled(leftArrowIcon)`
     order: 2;
     height: 3rem;
     transform : rotate(180deg);
@@ -171,8 +172,8 @@ const ItemContainer = styled.div`
     }
 `
 
-const Item = ({ title, description }) => (
-    <ItemContainer>
+const Item = ({ title, description, ...other }) => (
+    <ItemContainer {...other}>
         <ItemContent>
             <ItemTitle>{ title }</ItemTitle>
             <ItemDetails>{ description }</ItemDetails>
@@ -181,7 +182,7 @@ const Item = ({ title, description }) => (
     </ItemContainer>
 );
 
-const ModalContainer = styled.div`
+const ModalBackdrop = styled.div`
     display: ${props => props.isOpen ? 'flex' : 'none'};
     position: fixed;
     justify-content: center;
@@ -192,20 +193,112 @@ const ModalContainer = styled.div`
     animation: ${fadeIn} 300ms ease-in-out forwards;
 `
 const Modal = styled.div`
-    display: flex;
-    flex-flow: column nowrap;
-    height: 80vh;
-    width: 80vw;
+    max-width: 1200px;
+    font-size: clamp(0.4rem, 2vw, 1rem);
+    padding: 2em;
+    width: 90vw;
+
     border-radius: 1rem;
     background-color: #FFF;
     animation: 500ms ease-in-out forwards;
     animation-name: ${fadeIn}, ${scaleUp};
 `
 
+const ModalContainer = styled.div`
+    max-height : 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: 3em;
+    padding: 1em;
+`
+
+const ModalTitle = styled.h1`
+    font-weight: 600;
+    font-size: 3em;
+    color: #000;
+    text-align: center;
+`
+
+const ModalSecondaryTitle = styled.h2`
+    font-weight: 500;
+    font-size: 2em;
+    color: #292929;
+`
+
+const ModalContent = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    @media ${device.mobile}{
+        flex-flow: column nowrap;
+    }
+`
+
+const ModalImg = styled.img`
+    border-radius: 1rem;
+    object-fit: contain;
+    max-width: 100%;
+    @media ${device.widescreen}
+    {        
+        flex: 2;
+        width: 0;
+    }
+`
+
+const ModalDescription = styled.p`
+    font-weight: 300;
+    color: #292929;
+    flex: 1;
+    text-align: justify;
+`
+
+const ModalFooter = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 3em;
+    margin-inline: 3em;
+`
+const StackItem = styled.div`
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+    align-items: center;
+`
+const StackName = styled.p`
+    color: #000;
+    font-weight: 600;
+`
+const StackIcon = styled.img`
+    width: 5em;
+`
+
+const ModalClose = styled(closeIcon)`
+    position: fixed;
+    top: 4em;
+    right: 4em;
+    height: 2em;
+    transition: 300ms ease-in-out;
+    transition-property: opacity,transform;
+    &:hover{
+        opacity: 0.8;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+`
+
 
 const Portfolio = () => {
     const [ scrollIndex, setScrollIndex ] = useState(0);
     const [ modal, setModal ] = useState(false);
+    useEffect(() => {
+        document.body.style.overflow = modal ? "hidden" : "auto";
+    }, [modal])
+
     const items = [
         { 
             title : 'Portfolio',
@@ -249,14 +342,47 @@ const Portfolio = () => {
 
     return (
         <Section id="portfolio" title="Portfolio" description="A list of my previous built projects">
-            <ModalContainer isOpen={modal}>
-                <Modal />
-            </ModalContainer>
+            <ModalBackdrop isOpen={modal}>
+                <Modal>
+                    <ModalClose onClick={() => setModal(false)} />
+                    <ModalContainer>
+                        <ModalTitle>Project 1</ModalTitle>
+                        <ModalContent>
+                            <ModalImg src="https://picsum.photos/600/400" />
+                            <ModalDescription>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                                Facere molestiae impedit tempora harum quis perferendis ad rerum excepturi, animi atque debitis aut provident illum, voluptatum vero neque ipsa sed optio quo, 
+                                soluta aliquam ratione molestias beatae. Tempore, alias ullam voluptatum dicta quasi asperiores dolorem natus. 
+                                Repudiandae aperiam accusantium quo voluptates.
+                            </ModalDescription>
+                        </ModalContent>
+                        <ModalSecondaryTitle>Featured:</ModalSecondaryTitle>
+                        <ModalFooter>
+                            <StackItem>
+                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
+                                <StackName>React</StackName>
+                            </StackItem>
+                            <StackItem>
+                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
+                                <StackName>React</StackName>
+                            </StackItem>
+                            <StackItem>
+                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
+                                <StackName>React</StackName>
+                            </StackItem>
+                            <StackItem>
+                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
+                                <StackName>React</StackName>
+                            </StackItem>
+                        </ModalFooter>
+                    </ModalContainer>
+                </Modal>
+            </ModalBackdrop>
             <Wrapper>
                 <LeftArrow onClick={scrollBackward} />
                 <Carousel>
                     <CarouselWrapper scrollIndex={scrollIndex}>
-                        { items.map( ( value, index ) => <Item key={index} title={value.title} description={value.description} /> ) }
+                        { items.map( ( value, index ) => <Item key={index} onClick={() => { setModal(true); setScrollIndex(index);}} title={value.title} description={value.description} /> ) }
                     </CarouselWrapper>
                 </Carousel>
                 <RightArrow onClick={scrollForward} />

@@ -86,7 +86,6 @@ const SkillText = styled.p`
     display: inline-block;
     font-weight: 600;
     flex: 3;
-
 `
 
 const Skill = ( props ) => (
