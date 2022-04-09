@@ -6,7 +6,6 @@ import device from "../utils/deviceSize";
 const Container = styled.nav`
     position: fixed;
     display: flex;
-    color: white;
     width: 100%;
     transition: 200ms ease-in-out;
     transition-property: padding, color, background-color;
