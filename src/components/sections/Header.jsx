@@ -248,6 +248,46 @@ const VerticalLine = styled.line`
         }
 
 `
+const LinkButton = styled.a`
+    position: relative;
+    text-decoration: none;
+    color: #949494;
+    font-weight: 300;
+    transition: 300ms ease-in-out;
+    transition-property: transform;
+    cursor: pointer;
+    &::after{
+        content: '';
+        position: absolute;
+        left: 42%;
+        top: 120%;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #949494;
+        clear: both;
+        transition: 300ms ease-in-out;
+        transform: translateY(0.5em);
+        opacity: 0;
+    }
+    &:hover{
+        transform: translateY(-0.2em);
+        &::after{
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+`
+
+const ButtonsWrapper = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+`
 
 const SlideContainer = styled.g`
     transform: translateY( ${ ( { slide } ) => -slide * 100 + 300}px );
@@ -336,7 +376,10 @@ const Header = () => {
                                 <DownArrow onClick={onClickSlideNext} />
                             </g>
                         </svg>
-                        <Button href="#resume">Hire Me</Button>
+                        <ButtonsWrapper>
+                            <Button href="#resume">Hire Me</Button>
+                            <LinkButton href="#portfolio">See my works</LinkButton>
+                        </ButtonsWrapper>
                     </LeftSide>
                     <RightSide>
                         <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>

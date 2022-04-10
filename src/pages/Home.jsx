@@ -5,6 +5,7 @@ import Header from "../components/sections/Header";
 import Portfolio from "../components/sections/Portfolio";
 import Resume from "../components/sections/Resume";
 import Navbar from "../components/Navbar";
+import Contact from "../components/sections/Contact";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Resume />
             <Portfolio />
             <Blog />
+            <Contact />
         </>
     )
 }
