@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useIntersectionObserver from "../utils/IntersectionObserver";
 import device from "../utils/deviceSize";
 
-const Wrapper = styled.section`
+const Container = styled.section`
     background-color : #C4C4C4;
     margin-bottom: -1px;
     --title-duration : 600ms;
@@ -55,6 +55,10 @@ const Desc = styled.h3`
     }
 `
 
+const ContentWrapper = styled.div`
+    padding: 5em 0;
+`
+
 const Section =  (props) => {
     const wrapperRef = useRef();
     const entry = useIntersectionObserver(wrapperRef, { rootMargin: '-30%' }, true);
@@ -64,13 +68,15 @@ const Section =  (props) => {
     }, [isVisible])
 
     return (
-        <Wrapper id={ props.id } ref={wrapperRef}>
+        <Container id={ props.id } ref={wrapperRef}>
             <Content>
                 <Title isVisible={isVisible} >{props.title}</Title>
                 { props.description && <Desc isVisible={isVisible}>{props.description}</Desc> }
-                { props.children }
+                <ContentWrapper>
+                    { props.children }
+                </ContentWrapper>
             </Content>
-        </Wrapper>
+        </Container>
     )
 }
 

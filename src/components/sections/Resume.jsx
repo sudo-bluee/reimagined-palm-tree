@@ -9,19 +9,15 @@ const Wrapper = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    margin-block: 5em 2em; 
     gap: 5em;
     @media ${device.laptop}{
         flex-flow: column;
-        margin-block: 2em;
     }
 `
 
 
 const Row = styled.div`
     display: flex;
-    justify-content: center;
-    align-self: flex-start;
     margin-block: 1em 4em;
     transition: 500ms ease-in-out 300ms;
     opacity: ${props => props.animateIn ? '1' : '0'};

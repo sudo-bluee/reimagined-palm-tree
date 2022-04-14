@@ -10,7 +10,6 @@ const Wrapper = styled.div`
     flex-flow: row nowrap;
     justify-content: center;
     gap: 2em;
-    margin: 2em 0;
     @media ${device.mobile}{
         flex-flow: column;
         gap: 4em;
