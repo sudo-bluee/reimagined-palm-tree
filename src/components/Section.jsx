@@ -4,10 +4,10 @@ import useIntersectionObserver from "../utils/IntersectionObserver";
 import device from "../utils/deviceSize";
 
 const Container = styled.section`
-    background-color : #C4C4C4;
-    margin-bottom: -1px;
     --title-duration : 600ms;
     --description-duration : 500ms;
+    background-color : #C4C4C4;
+    margin-bottom: -1px;
     overflow-x: hidden;
 `
 

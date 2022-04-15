@@ -40,8 +40,10 @@ const Container = styled.header`
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
+    min-height: 90vh;
     gap: 2em;
-    width:80% ;
+    width:80%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 5em 0;

@@ -73,15 +73,17 @@ const Contact = () => {
 
     return (
     <Section onVisiblityChange={setVisible} id="contact" title="Contact Me" description="Get in touch">
-        <Container>
-                <InputsContainer animateIn={isVisible} >
-                    <Input type="text" placeholder="Subject title" />
-                    <Input type="text" placeholder="Full name" />
-                    <Input type="email" placeholder="Email" />
-                </InputsContainer>
-                <TextArea animateIn={isVisible} placeholder="Your message ..."/>
-        </Container>
-        <SubmitButton animateIn={isVisible} value="Send" type="submit" />
+        <form method="get" action="#">
+            <Container>
+                    <InputsContainer animateIn={isVisible} >
+                        <Input type="text" placeholder="Subject title" />
+                        <Input type="text" placeholder="Full name" />
+                        <Input type="email" placeholder="Email" />
+                    </InputsContainer>
+                    <TextArea animateIn={isVisible} placeholder="Your message ..."/>
+            </Container>
+            <SubmitButton animateIn={isVisible} value="Send" type="submit" />
+        </form>
     </Section>
     )
 }
