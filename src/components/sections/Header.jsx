@@ -314,8 +314,6 @@ const Header = () => {
 
     const slides = [
         'Software developer',
-        'Desktop developer',
-        'Unix Administrator',
         'Mobile Developer',
     ]
 
@@ -386,8 +384,8 @@ const Header = () => {
                     <RightSide>
                         <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
                         <SocialSlide icon={<InstagramIcon />} link="#" info="@sudo-blue" color="#8a3ab9" />
-                        <SocialSlide icon={<GithubIcon />} link="http://github.com/sudo-node" info="sudo-node" color="#000" />
                         <SocialSlide icon={<TwitterIcon />} link="http://twitter.com/sudo_blue" info="@sudo_blue" color="#00acee" />
+                        <SocialSlide icon={<GithubIcon />} link="http://github.com/sudo-node" info="sudo-node" color="#000" />
                     </RightSide>
             </Content>
         </Container>
