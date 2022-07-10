@@ -142,7 +142,6 @@ const ItemContainer = styled.div`
         border-radius: 1rem;
         border: 1px black solid;
         z-index: -1;
-        backdrop-filter: blur(0px);
         transition: 400ms ease-in-out;
     }
 
@@ -164,9 +163,6 @@ const ItemContainer = styled.div`
             transform: scale(1);
             opacity: 1;
             transition-delay: 600ms;
-        }
-        &::after{
-            backdrop-filter: blur(5px);
         }
     }
 `
