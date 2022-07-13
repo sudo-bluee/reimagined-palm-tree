@@ -1,0 +1,18 @@
+{
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  },
+  "name": "palm",
+  "version": "1.0.0",
+  "main": "App.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdelhakim Merzoug",
+  "license": "ISC",
+  "description": ""
+}
