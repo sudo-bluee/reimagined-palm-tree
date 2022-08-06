@@ -13,6 +13,9 @@ app.use(bodyParser.json());
 
 // Use routers
 app.use('/projects', ProjectsRouter);
+app.use((err, req, res, next) => {
+    return res.json(err.toJson());
+});
 
 
 // Start listening

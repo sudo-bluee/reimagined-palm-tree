@@ -1,8 +1,9 @@
 const express = require('express');
-const projectsHandler = require('../handlers/project');
+const { findAllProjects, findProjectById } = require('../handlers/project');
 
 const router = express.Router();
 
-router.get('/', projectsHandler);
+router.get('/', findAllProjects)
+    .get('/:id', findProjectById);
 
 module.exports = router;
