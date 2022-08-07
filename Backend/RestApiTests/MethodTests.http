@@ -1,0 +1,5 @@
+POST http://localhost:5000/projects HTTP/1.1
+### GET REQUEST
+GET http://localhost:5000/projects
+### GET :id
+GET http://localhost:5000/projects/azrazr1651

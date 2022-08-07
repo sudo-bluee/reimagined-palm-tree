@@ -40,7 +40,10 @@ portfolioSchema.statics = {
     async findProjectById(_id)
     {
         try {
-            
+            if (!mongoose.Types.ObjectId.isValid(_id))
+            {
+                throw new APIError(400, "Bad requset", "Project Id is not valid.");
+            }
             const user = await this.findById( _id );
             if (!user)
             {
@@ -50,7 +53,8 @@ portfolioSchema.statics = {
         }
         catch (err)
         {
-            return Promise.reject(new APIError("500", "Internal server error", "Query is retarded"));
+            // Todo : Add Process Database Error Helper.
+            return Promise.reject(new APIError( err.status || "500",  err.title || "Internal server error", `Query is retarded : ${err.message}`));
         }
     },
 }
