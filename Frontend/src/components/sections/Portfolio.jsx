@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import leftArrowIcon from "../../icons/arrow-left.svg";
 import closeIcon from "../../icons/close.svg";
 import device from "../../utils/deviceSize";
+import stackToName from "../../utils/stackHelper";
 
 const fadeIn = keyframes`
     0%{
@@ -288,43 +289,37 @@ const ModalClose = styled(closeIcon)`
 
 
 const Portfolio = () => {
-    const [ scrollIndex, setScrollIndex ] = useState(0);
-    const [ modal, setModal ] = useState(false);
+    const [scrollIndex, setScrollIndex] = useState(0);
+    const [modal, setModal] = useState(false);
+    const [modalItem, setModalItem] = useState(null);
+    const [items, setItems] = useState([]);
+    const carouselItems = items.map((value, index) => (
+        <Item key={value._id}
+            onClick={() => {
+                setModal(true);
+                setScrollIndex(index);
+                setModalItem(index);
+            }}
+            title={value.name}
+            description={value.shortDesc} />
+    ));
+
+
     useEffect(() => {
         document.body.style.overflow = modal ? "hidden" : "auto";
     }, [modal])
 
-    const items = [
-        { 
-            title : 'Portfolio',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 2',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 3',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 3',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 3',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 3',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-        { 
-            title : 'Project 3',
-            description : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, explicabo. Error est quas officia fugit.'
-        },
-    ]
+    useEffect(() => {
+        const getProjects = async () => {
+            const data = await fetch("http://localhost:5000/projects");
+            const jsonData = await data.json();
+            setItems(jsonData);
+        }
+        getProjects()
+            .catch(err => console.log(err));
+    }, [])
 
+    
     function scrollForward()
     {
         setScrollIndex( (scrollIndex + 1) % items.length );
@@ -336,48 +331,38 @@ const Portfolio = () => {
     }
 
     return (
-        <Section id="portfolio" title="Portfolio" description="A list of my previous built projects">
+        <Section id="portfolio"  title="Portfolio" description="A list of my previous built projects">
             <ModalBackdrop isOpen={modal}>
-                <Modal>
+                {modal && <Modal>
                     <ModalClose onClick={() => setModal(false)} />
                     <ModalContainer>
-                        <ModalTitle>Project 1</ModalTitle>
+                        <ModalTitle>{items[modalItem].name}</ModalTitle>
                         <ModalContent>
                             <ModalImg src="https://picsum.photos/600/400" />
                             <ModalDescription>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                                Facere molestiae impedit tempora harum quis perferendis ad rerum excepturi, animi atque debitis aut provident illum, voluptatum vero neque ipsa sed optio quo, 
-                                soluta aliquam ratione molestias beatae. Tempore, alias ullam voluptatum dicta quasi asperiores dolorem natus. 
-                                Repudiandae aperiam accusantium quo voluptates.
+                            {items[modalItem].longDesc}
                             </ModalDescription>
                         </ModalContent>
                         <ModalSecondaryTitle>Featured:</ModalSecondaryTitle>
                         <ModalFooter>
-                            <StackItem>
-                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
-                                <StackName>React</StackName>
-                            </StackItem>
-                            <StackItem>
-                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
-                                <StackName>React</StackName>
-                            </StackItem>
-                            <StackItem>
-                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
-                                <StackName>React</StackName>
-                            </StackItem>
-                            <StackItem>
-                                <StackIcon src="https://winaero.com/blog/wp-content/uploads/2019/11/Photos-new-icon.png" />
-                                <StackName>React</StackName>
-                            </StackItem>
+                            {
+                                items[modalItem].stack.map(value => (
+                                    <StackItem>
+                                        <StackIcon src={`/images/${value}.png`} />
+                                        <StackName>{stackToName[value]}</StackName>
+                                    </StackItem>)
+                                )
+                            }
+                            
                         </ModalFooter>
                     </ModalContainer>
-                </Modal>
+                </Modal> }
             </ModalBackdrop>
             <Wrapper>
                 <LeftArrow onClick={scrollBackward} />
                 <Carousel>
                     <CarouselWrapper scrollIndex={scrollIndex}>
-                        { items.map( ( value, index ) => <Item key={index} onClick={() => { setModal(true); setScrollIndex(index);}} title={value.title} description={value.description} /> ) }
+                        { carouselItems }
                     </CarouselWrapper>
                 </Carousel>
                 <RightArrow onClick={scrollForward} />

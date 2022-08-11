@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const ProjectsRouter = require('./routers/Projects');
 const { NotFoundMiddleware, ErrorsMiddleware, MethodNotFoundMiddleware } = require('./middlewares/ErrorMiddleware');
 // Connect to mongodb
@@ -11,6 +12,9 @@ const app = express();
 
 // Add services
 app.use(bodyParser.json());
+app.use(cors({
+    origin: "http://localhost:5001"
+}))
 
 // Use routers
 app.use('/projects', ProjectsRouter);

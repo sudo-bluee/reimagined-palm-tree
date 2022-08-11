@@ -3,14 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     context : path.resolve(__dirname, 'src'),
-    entry : './index.js',
+    entry: './index.js',
+    devServer: {
+        port: 5001
+    },
     output : {
         filename : 'bundle.js',
         path : path.resolve(__dirname, 'dist'),
         publicPath : '/'
     },
     mode : 'development',
-    devtool : 'eval',
+    devtool: 'eval',
     plugins : [ new HtmlWebpackPlugin({ template : './index.html'} )],
     module : {
         rules : [
