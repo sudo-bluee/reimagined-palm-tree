@@ -10,7 +10,7 @@ function ErrorsMiddleware(err, req, res, next)
 {
     if (!(err instanceof APIError))
     {
-        err = new APIError(500, "Internal server error", err.message );
+        err = new APIError(500, err.type, err.message );
     }
     const { status, message, title } = err;
 
