@@ -293,6 +293,8 @@ const Portfolio = () => {
     const [modal, setModal] = useState(false);
     const [modalItem, setModalItem] = useState(null);
     const [items, setItems] = useState([]);
+    const [isLoading, setLoading] = useState(false);
+
     const carouselItems = items.map((value, index) => (
         <Item key={value._id}
             onClick={() => {
@@ -311,12 +313,14 @@ const Portfolio = () => {
 
     useEffect(() => {
         const getProjects = async () => {
+            setLoading(true);
             const data = await fetch("http://localhost:5000/projects");
             const jsonData = await data.json();
             setItems(jsonData);
         }
         getProjects()
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false));
     }, [])
 
     
@@ -362,7 +366,8 @@ const Portfolio = () => {
                 <LeftArrow onClick={scrollBackward} />
                 <Carousel>
                     <CarouselWrapper scrollIndex={scrollIndex}>
-                        { carouselItems }
+                        { /* TODO : A loading spinner */}
+                        { isLoading ? "Loading.." : carouselItems }
                     </CarouselWrapper>
                 </Carousel>
                 <RightArrow onClick={scrollForward} />
