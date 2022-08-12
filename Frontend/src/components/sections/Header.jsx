@@ -313,8 +313,9 @@ const Header = () => {
     }, [currentSlide])
 
     const slides = [
-        'Software developer',
-        'Mobile Developer',
+        'Desktop Developer',
+        'Web Developer',
+        'Physicist',
     ]
 
     function slidePrev()

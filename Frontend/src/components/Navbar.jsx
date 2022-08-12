@@ -127,6 +127,12 @@ const Navbar = () => {
         setAnimating( true );
     }
 
+    function closeNavbar()
+    {
+        setOpen(false);
+        setAnimating(true);
+    }
+
     useEffect( () => {
         setScrolled( window.scrollY > 0 );
         window.addEventListener('scroll', handleScroll);
@@ -137,12 +143,12 @@ const Navbar = () => {
         <Container hasScrolled={hasScrolled}>
             <Logo />
             <List isOpen={ isOpen } isVisible={ isOpen || isAnimating } onTransitionEnd={ () => setAnimating( false ) } >
-                <Item href="#home">Home</Item>
-                <Item href="#about">About</Item>
-                <Item href="#resume">Resume</Item>
-                <Item href="#portfolio">Portfolio</Item>
-                <Item href="#blog">Blog</Item>
-                <Item href="#contact">Contact</Item>
+                <Item onClick={closeNavbar} href="#home">Home</Item>
+                <Item onClick={closeNavbar} href="#about">About</Item>
+                <Item onClick={closeNavbar} href="#resume">Resume</Item>
+                <Item onClick={closeNavbar} href="#portfolio">Portfolio</Item>
+                <Item onClick={closeNavbar} href="#blog">Blog</Item>
+                <Item onClick={closeNavbar} href="#contact">Contact</Item>
             </List>
 
             <ToggleButton hasScrolled={hasScrolled} onClick={toggleNavbar} toggled={ isOpen }>
