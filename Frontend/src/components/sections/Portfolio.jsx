@@ -130,8 +130,11 @@ const ItemContainer = styled.div`
     border-radius: 1rem;
     height: 25em;
     min-width: var(--item-width);
-    background-image: url(https://picsum.photos/300/300);
+    background-image: url(${props => props.background});
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -303,7 +306,8 @@ const Portfolio = () => {
                 setModalItem(index);
             }}
             title={value.name}
-            description={value.shortDesc} />
+            description={value.shortDesc}
+            background={`/images/${value._id}.png`} />
     ));
 
 
@@ -342,7 +346,7 @@ const Portfolio = () => {
                     <ModalContainer>
                         <ModalTitle>{items[modalItem].name}</ModalTitle>
                         <ModalContent>
-                            <ModalImg src="https://picsum.photos/600/400" />
+                            <ModalImg src={`/images/${items[modalItem]._id}.png`} />
                             <ModalDescription>
                             {items[modalItem].longDesc}
                             </ModalDescription>
@@ -350,8 +354,8 @@ const Portfolio = () => {
                         <ModalSecondaryTitle>Featured:</ModalSecondaryTitle>
                         <ModalFooter>
                             {
-                                items[modalItem].stack.map(value => (
-                                    <StackItem>
+                                items[modalItem].stack.map((value, index ) => (
+                                    <StackItem key={index}>
                                         <StackIcon src={`/images/${value}.png`} />
                                         <StackName>{stackToName[value]}</StackName>
                                     </StackItem>)

@@ -6,7 +6,7 @@ function findAllProjects( req, res, next )
         .then(result => {
             return res.json(result);
         })
-            .catch(err => next(err));
+        .catch(err => next(err));
 }
 
 function findProjectById(req, res, next)
