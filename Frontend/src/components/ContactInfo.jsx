@@ -68,7 +68,7 @@ const ContactInfo = ( { animateIn }) => (
                 <LocationIcon />
             </ItemIcon>
             <ItemText>
-                Massachusetts, Roxbury, 3786 Hinkle Lake Road
+                Villa 10 Cite 20 Logts MERAD, Tipaza
             </ItemText>
         </Item>
     </Wrapper>

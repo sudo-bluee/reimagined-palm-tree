@@ -383,10 +383,10 @@ const Header = () => {
                         </ButtonsWrapper>
                     </LeftSide>
                     <RightSide>
-                        <SocialSlide icon={<FacebookIcon />} link="#" info="Abdelhakim Merzoug" color="#4267B2"/>
-                        <SocialSlide icon={<InstagramIcon />} link="#" info="@sudo-blue" color="#8a3ab9" />
+                        <SocialSlide icon={<FacebookIcon />} link="https://www.facebook.com/sudoblue/" info="Abdelhakim Merzoug" color="#4267B2"/>
+                        <SocialSlide icon={<InstagramIcon />} link="https://www.instagram.com/sudo_blue/" info="@sudo-blue" color="#8a3ab9" />
                         <SocialSlide icon={<TwitterIcon />} link="http://twitter.com/sudo_blue" info="@sudo_blue" color="#00acee" />
-                        <SocialSlide icon={<GithubIcon />} link="http://github.com/sudo-node" info="sudo-node" color="#000" />
+                        <SocialSlide icon={<GithubIcon />} link="https://github.com/sudo-bluee" info="sudo-node" color="#000" />
                     </RightSide>
             </Content>
         </Container>

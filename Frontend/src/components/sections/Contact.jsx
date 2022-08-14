@@ -4,7 +4,7 @@ import Section from "../Section";
 import Button from "../Button";
 
 
-const Container = styled.div`
+const Container = styled.form`
     display: flex;
     flex-flow: row wrap;
     gap: 4rem;
@@ -34,7 +34,7 @@ const InputsContainer = styled.div`
 
 const TextArea = styled.textarea`
     flex: 3 1 20rem;
-    max-height: 30rem;
+    min-height: 10rem;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.8rem;
     padding: 1em;
@@ -73,14 +73,14 @@ const Contact = () => {
 
     return (
     <Section onVisiblityChange={setVisible} id="contact" title="Contact Me" description="Get in touch">
-        <form method="get" action="#">
+        <form method="GET" action="mailto:abdelhakim.merzoug00@gmail.com" enctype="text/plain">
             <Container>
                     <InputsContainer animateIn={isVisible} >
-                        <Input type="text" placeholder="Subject title" />
-                        <Input type="text" placeholder="Full name" />
-                        <Input type="email" placeholder="Email" />
+                        <Input id="subject" name="subject" type="text" placeholder="Subject title" />
+                        <Input name="name" type="text" placeholder="Full name" />
+                        <Input name="email" type="email" placeholder="Email" />
                     </InputsContainer>
-                    <TextArea animateIn={isVisible} placeholder="Your message ..."/>
+                    <TextArea name="body" animateIn={isVisible} placeholder="Your message ..."/>
             </Container>
             <SubmitButton animateIn={isVisible} value="Send" type="submit" />
         </form>

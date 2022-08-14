@@ -160,16 +160,17 @@ const About = () => {
     ]
 
     const skills = [
-        'Experienced with Javascript, CSS, C#, C++ C',
+        'Experienced with Javascript, CSS, C#, C++ and C',
         'Familiar with MERN Stack ( MongoDB, ExpressJS, React, NodeJS )',
+        'Worked with .NET Applications ( ASP.NET Core, WPF, .NET MAUI )',
         'Can maintain projects with JQuery or vanilla javascript',
-        'MySQL, PostgreSQL / MongoDB',
-        'Git, GitHub, VSCode, Terminal, VIM',
+        'MySQL, PostgreSQL, MS SQL Server / MongoDB',
+        'Git, GitHub, VSCode, Visual Studio, Terminal',
         'Team collaboration and problem solving',
     ]
 
     return (
-        <Section onVisiblityChange={setVisible} id="about" title="About Me" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, vel? Some other information here.">
+        <Section onVisiblityChange={setVisible} id="about" title="About Me" description="Summarized key points of my experience.">
             <Wrapper>
                 <Column>
                     <Title animateIn={isVisible}>Languages:</Title>

@@ -339,7 +339,7 @@ const Portfolio = () => {
     }
 
     return (
-        <Section id="portfolio"  title="Portfolio" description="A list of my previous built projects">
+        <Section id="portfolio"  title="Portfolio" description="Some of my selected works">
             <ModalBackdrop isOpen={modal}>
                 {modal && <Modal>
                     <ModalClose onClick={() => setModal(false)} />

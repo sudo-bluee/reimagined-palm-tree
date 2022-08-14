@@ -44,7 +44,8 @@ const Resume = () => {
         <Section onVisiblityChange={setVisible} id="resume" title="Resume">
             <Wrapper>
                 <ResumeText animateIn={isVisible}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, repellendus sunt officiis exercitationem harum perferendis voluptatum sequi omnis dignissimos nisi velit! Adipisci amet illum, pariatur autem voluptate accusantium, numquam animi aut quis ex ea eligendi dolores veritatis. Incidunt, quae dicta.
+                    Self-taught Web developer, Desktop developer, passionate about creating user-friendly applications with modern technologies, has knowledge of software design principles and agile development principles.
+                    A Physics graduate from SAAD Dahlab University.<br />Currently based in Tipaza, Algeria 
                 </ResumeText>
                 <ContactInfo animateIn={isVisible} />
             </Wrapper>
