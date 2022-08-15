@@ -1,12 +1,12 @@
 const APIError = require("../helpers/APIError");
 
-function NotFoundMiddleware(req, res, next)
+function notFoundMiddleware(req, res, next)
 {
     const error = new APIError(404, "Not Found", "Data requested not found.");
     return next(error); 
 }
 
-function ErrorsMiddleware(err, req, res, next)
+function errorsMiddleware(err, req, res, next)
 {
     if (!(err instanceof APIError))
     {
@@ -23,14 +23,14 @@ function ErrorsMiddleware(err, req, res, next)
     })
 }
 
-function MethodNotFoundMiddleware(req, res, next)
+function methodNotFoundMiddleware(req, res, next)
 {
     const error = new APIError(405, "Method Not Allowed", "Method used is not allowed.");
     return next(error); 
 }
 
 module.exports = {
-    NotFoundMiddleware,
-    MethodNotFoundMiddleware,
-    ErrorsMiddleware
+    notFoundMiddleware,
+    methodNotFoundMiddleware,
+    errorsMiddleware
 }

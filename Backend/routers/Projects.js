@@ -1,5 +1,12 @@
-const { findAllProjects, findProjectById } = require('../handlers/project');
+// Usings
 const express = require('express');
+
+// Imports
+const { ProjectsHandler } = require('../handlers');
+
+// Imports Destructing
+const { findAllProjects, findProjectById } = ProjectsHandler;
+
 
 const router = express.Router();
 

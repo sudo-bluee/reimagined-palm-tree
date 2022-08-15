@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
-// TODO : Manage Folder structure
-// Use environement variables
-const ProjectsRouter = require('./routers/Projects');
-const { NotFoundMiddleware, ErrorsMiddleware, MethodNotFoundMiddleware } = require('./middlewares/ErrorMiddleware');
+// Imports
+const { ProjectsRouter } = require('./routers');
+const { ErrorsMiddleware } = require('./middlewares');
+// Destructuring Imports
+const { notFoundMiddleware, methodNotFoundMiddleware, errorsMiddleware } = ErrorsMiddleware;
+// TODO : Use environement variables
 // Connect to mongodb
 mongoose.connect('mongodb://localhost/palm')
     .then(() => {
@@ -25,12 +27,13 @@ app.use(cors({
 app.use(morgan("tiny"));
 
 // Use routers
+// TODO : Move Endpoint route path to Router instead.
 app.use('/api/projects', ProjectsRouter);
 
 // Error middlewares
-app.get('*', NotFoundMiddleware);
-app.use('*', MethodNotFoundMiddleware);
-app.use(ErrorsMiddleware);
+app.get('*', notFoundMiddleware);
+app.use('*', methodNotFoundMiddleware);
+app.use(errorsMiddleware);
 
 // Start listening
 app.listen(5000, () => {
