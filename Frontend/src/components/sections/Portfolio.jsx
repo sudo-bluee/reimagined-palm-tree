@@ -298,7 +298,7 @@ const Portfolio = () => {
     const [items, setItems] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
-    const carouselItems = items.map((value, index) => (
+    const carouselItems = items?.map((value, index) => (
         <Item key={value._id}
             onClick={() => {
                 setModal(true);
@@ -316,15 +316,20 @@ const Portfolio = () => {
     }, [modal])
 
     useEffect(() => {
+        let controller = new AbortController();
         const getProjects = async () => {
             setLoading(true);
-            const data = await fetch("http://localhost:5000/projects");
-            const jsonData = await data.json();
-            setItems(jsonData);
+            const response = await fetch("http://localhost:5000/api/projects", { signal: controller.signal });
+            if (!response.ok)
+                throw response;
+            return await response.json();
         }
         getProjects()
-            .catch(err => console.log(err))
+            .then(value => setItems(value))
+            .catch(err => console.error(err))
             .finally(() => setLoading(false));
+        
+        return () => controller?.abort();
     }, [])
 
     

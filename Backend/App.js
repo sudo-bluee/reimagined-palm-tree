@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
-
+// TODO : Manage Folder structure
+// Use environement variables
 const ProjectsRouter = require('./routers/Projects');
 const { NotFoundMiddleware, ErrorsMiddleware, MethodNotFoundMiddleware } = require('./middlewares/ErrorMiddleware');
 // Connect to mongodb
@@ -24,7 +25,7 @@ app.use(cors({
 app.use(morgan("tiny"));
 
 // Use routers
-app.use('/projects', ProjectsRouter);
+app.use('/api/projects', ProjectsRouter);
 
 // Error middlewares
 app.get('*', NotFoundMiddleware);

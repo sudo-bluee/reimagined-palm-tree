@@ -4,7 +4,7 @@ import Section from "../Section";
 import Button from "../Button";
 
 
-const Container = styled.form`
+const Container = styled.div`
     display: flex;
     flex-flow: row wrap;
     gap: 4rem;
@@ -73,7 +73,7 @@ const Contact = () => {
 
     return (
     <Section onVisiblityChange={setVisible} id="contact" title="Contact Me" description="Get in touch">
-        <form method="GET" action="mailto:abdelhakim.merzoug00@gmail.com" enctype="text/plain">
+        <form method="GET" action="mailto:abdelhakim.merzoug00@gmail.com">
             <Container>
                     <InputsContainer animateIn={isVisible} >
                         <Input id="subject" name="subject" type="text" placeholder="Subject title" />

@@ -50,7 +50,7 @@ const Resume = () => {
                 <ContactInfo animateIn={isVisible} />
             </Wrapper>
             <Row animateIn={isVisible}>
-                <Button>
+                <Button href="/files/Curriculum vitae.pdf">
                     DOWNLOAD CV
                 </Button>                    
             </Row>            
