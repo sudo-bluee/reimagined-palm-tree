@@ -59,16 +59,16 @@ const Footer = () => {
         <Container>
             <Content>
                 <Social>
-                    <SocialButton href="http://facebook.com/sudoblue" color="#4267B2">
+                    <SocialButton rel="noreferrer noopener" target="_blank" href="http://facebook.com/sudoblue" color="#4267B2">
                         <FacebookIcon />
                     </SocialButton>
-                    <SocialButton href="http://instagram.com/sudo_blue" color="#8a3ab9">
+                    <SocialButton rel="noreferrer noopener" target="_blank" href="http://instagram.com/sudo_blue" color="#8a3ab9">
                         <InstagramIcon />
                     </SocialButton>
-                    <SocialButton href="http://github.com/sudo-bluee" color="#000">
+                    <SocialButton rel="noreferrer noopener" target="_blank" href="http://github.com/sudo-bluee" color="#000">
                         <GithubIcon />
                     </SocialButton>
-                    <SocialButton href="http://twitter.com/sudo_blue" color="#00acee">
+                    <SocialButton rel="noreferrer noopener" target="_blank" href="http://twitter.com/sudo_blue" color="#00acee">
                         <TwitterIcon />
                     </SocialButton>
                 </Social>
