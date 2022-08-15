@@ -1,4 +1,4 @@
 
 module.exports = {
-    ProjectsRouter : require('./Projects')
+    projectsRouter : require('./Projects')
 }

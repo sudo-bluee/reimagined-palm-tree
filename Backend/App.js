@@ -4,13 +4,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
 // Imports
-const { ProjectsRouter } = require('./routers');
-const { ErrorsMiddleware } = require('./middlewares');
+const { projectsRouter } = require('./routers');
+const { errorsMiddlewares } = require('./middlewares');
+
 // Destructuring Imports
-const { notFoundMiddleware, methodNotFoundMiddleware, errorsMiddleware } = ErrorsMiddleware;
-// TODO : Use environement variables
+const { notFoundMiddleware, methodNotFoundMiddleware, errorsMiddleware } = errorsMiddlewares;
+
+// Initialize Environement configurations
+dotenv.config();
+console.log(process.env.NODE_ENV);
+
 // Connect to mongodb
+// TODO: Move connection string to dotenv
 mongoose.connect('mongodb://localhost/palm')
     .then(() => {
         console.log("Connected to database.");
@@ -24,11 +32,11 @@ app.use(bodyParser.json());
 app.use(cors({
     origin: "http://localhost:5001"
 }));
-app.use(morgan("tiny"));
+app.use(morgan("dev"));
 
 // Use routers
 // TODO : Move Endpoint route path to Router instead.
-app.use('/api/projects', ProjectsRouter);
+app.use('/api/projects', projectsRouter);
 
 // Error middlewares
 app.get('*', notFoundMiddleware);
@@ -36,6 +44,6 @@ app.use('*', methodNotFoundMiddleware);
 app.use(errorsMiddleware);
 
 // Start listening
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server listening to port 5000 ....");
 })

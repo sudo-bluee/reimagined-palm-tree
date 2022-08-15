@@ -1,4 +1,4 @@
 
 module.exports = {
-    ProjectsHandler : require('./projects')
+    projectsHandler : require('./projects')
 }

@@ -1,4 +1,4 @@
 
 module.exports = {
-    ErrorsMiddleware : require('./ErrorsMiddleware')
+    errorsMiddlewares : require('./ErrorsMiddleware')
 }
