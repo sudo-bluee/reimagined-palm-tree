@@ -19,7 +19,7 @@ console.log(process.env.NODE_ENV);
 
 // Connect to mongodb
 // TODO: Move connection string to dotenv
-mongoose.connect('mongodb://localhost/palm')
+mongoose.connect('mongodb://127.0.0.1:27017/palm')
     .then(() => {
         console.log("Connected to database.");
     })

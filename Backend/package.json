@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "main": "App.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Abdelhakim Merzoug",

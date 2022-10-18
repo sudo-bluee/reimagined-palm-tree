@@ -319,7 +319,7 @@ const Portfolio = () => {
         let controller = new AbortController();
         const getProjects = async () => {
             setLoading(true);
-            const response = await fetch("http://localhost:5000/api/projects", { signal: controller.signal });
+            const response = await fetch("/api/projects", { signal: controller.signal });
             if (!response.ok)
                 throw response;
             return await response.json();
