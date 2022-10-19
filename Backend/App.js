@@ -15,7 +15,7 @@ const { notFoundMiddleware, methodNotFoundMiddleware, errorsMiddleware } = error
 
 // Initialize Environement configurations
 dotenv.config();
-console.log(process.env.NODE_ENV);
+console.log('Environement', process.env.NODE_ENV);
 
 // Connect to mongodb
 // TODO: Move connection string to dotenv
@@ -45,5 +45,5 @@ app.use(errorsMiddleware);
 
 // Start listening
 app.listen(process.env.PORT, () => {
-    console.log("Server listening to port 5000 ....");
+    console.log(`Server listening to port ${process.env.PORT} ...`);
 })
