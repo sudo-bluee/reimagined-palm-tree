@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
+@font-face {
+    font-family: 'CaskaydiaCove NF';
+    src: url('/fonts/Caskaydia Cove NF.ttf');
+}
+
 :root {
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
